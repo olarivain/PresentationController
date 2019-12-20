@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="8z8-yC-Ios">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PresentationController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aV-lQ-NZI">
+                                <rect key="frame" x="141.5" y="413.5" width="131" height="30"/>
+                                <state key="normal" title="tap to present card"/>
+                                <connections>
+                                    <action selector="present:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iUc-U0-FBf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqN-Yy-XSm">
+                                <rect key="frame" x="146.5" y="471" width="121" height="30"/>
+                                <state key="normal" title="tap to present full"/>
+                                <connections>
+                                    <action selector="presentFull:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hF7-cF-dOo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vmo-wG-Gqq">
+                                <rect key="frame" x="87.5" y="509" width="239" height="30"/>
+                                <state key="normal" title="tap to present card from tab bar vc"/>
+                                <connections>
+                                    <action selector="presentTabBAr:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JSl-A3-xfu"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6aV-lQ-NZI" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="00S-08-Gjb"/>
+                            <constraint firstItem="XqN-Yy-XSm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="HDR-QX-T6w"/>
+                            <constraint firstItem="vmo-wG-Gqq" firstAttribute="top" secondItem="XqN-Yy-XSm" secondAttribute="bottom" constant="8" id="RqW-4k-E1Q"/>
+                            <constraint firstItem="vmo-wG-Gqq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lAg-ZJ-YNR"/>
+                            <constraint firstItem="6aV-lQ-NZI" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="lEq-I4-RaT"/>
+                            <constraint firstItem="XqN-Yy-XSm" firstAttribute="top" secondItem="6aV-lQ-NZI" secondAttribute="bottom" constant="27.5" id="nfm-ng-bnM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="FWU-fn-96T"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="139"/>
+        </scene>
+        <!--Presented Controller-->
+        <scene sceneID="kKP-oy-6Kt">
+            <objects>
+                <viewController storyboardIdentifier="PresentedController" id="uq3-9T-zRV" customClass="PresentedController" customModule="PresentationController" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1nV-kq-kaT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dm1-42-MG4">
+                                <rect key="frame" x="167.5" y="438" width="79" height="30"/>
+                                <state key="normal" title="Dismiss me"/>
+                                <connections>
+                                    <action selector="dismissMe:" destination="uq3-9T-zRV" eventType="touchUpInside" id="ae1-kO-4vN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="dm1-42-MG4" firstAttribute="centerY" secondItem="Wot-Hc-JaF" secondAttribute="centerY" id="fMY-rm-k90"/>
+                            <constraint firstItem="dm1-42-MG4" firstAttribute="centerX" secondItem="Wot-Hc-JaF" secondAttribute="centerX" id="lJr-R4-QuD"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wot-Hc-JaF"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Op7-dr-E0h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886" y="-442"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="RM9-vu-O7K">
+            <objects>
+                <viewController id="ppP-gQ-WGq" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ahs-K0-awN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="A1B-ft-tPN"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="4h5-vm-ie1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="chn-eq-ahj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-107" y="-471"/>
+        </scene>
+        <!--Item 1-->
+        <scene sceneID="vgD-Dp-WqQ">
+            <objects>
+                <viewController id="zgV-TX-bzn" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AGf-aP-4ih">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="yKg-cm-tA0"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 1" id="K4f-HI-R5h"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WeJ-il-Avk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-525" y="512"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="x4l-Qt-60z">
+            <objects>
+                <tabBarController id="8z8-yC-Ios" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oNQ-9j-D0e">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="zgV-TX-bzn" kind="relationship" relationship="viewControllers" id="B1j-9d-gwp"/>
+                        <segue destination="ppP-gQ-WGq" kind="relationship" relationship="viewControllers" id="78k-Ig-sg1"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="8XK-gt-uWi"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGg-Zp-z66" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1354" y="-56"/>
+        </scene>
+    </scenes>
+</document>
