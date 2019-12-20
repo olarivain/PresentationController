@@ -58,6 +58,27 @@ class PresentedController: UIViewController {
     @IBAction func dismissMe(_ sender: Any) {
         self.otf_dismiss(animated: true, completion: nil)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NSLog("viewWillAppear - PresentedController")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NSLog("viewDidAppear - PresentedController")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NSLog("viewWillDisappear - PresentedController")
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSLog("viewDidDisappear - PresentedController")
+    }
 }
 
 extension UIViewController: UIAdaptivePresentationControllerDelegate {
@@ -65,7 +86,6 @@ extension UIViewController: UIAdaptivePresentationControllerDelegate {
     public func presentationController(_ presentationController: UIPresentationController, willPresentWithAdaptiveStyle style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator?) {
         self.viewWillDisappear(true)
     }
-    
     
     public func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
         let coordinator = presentationController.presentingViewController.transitionCoordinator
@@ -93,7 +113,8 @@ extension UIViewController {
         if (viewControllerToPresent.modalPresentationStyle == .automatic // this may be too conservative. `fullSheet` still leaves homeVC exposed
             || viewControllerToPresent.modalPresentationStyle == .pageSheet),
             let presentationController = viewControllerToPresent.presentationController,
-            presentationController.delegate == nil {
+            presentationController.delegate == nil
+        {
             presentationController.delegate = self
         }
         
@@ -101,14 +122,15 @@ extension UIViewController {
     }
     
     func otf_dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        if self.modalPresentationStyle == .automatic
-            || self.modalPresentationStyle == .pageSheet {
-            self.presentationController?.presentingViewController.beginAppearanceTransition(true, animated: true)
-        }
         
+        guard self.modalPresentationStyle == .automatic
+            || self.modalPresentationStyle == .pageSheet
+            else { return self.dismiss(animated: flag, completion: completion) }
+        
+        self.presentationController?.presentingViewController.beginAppearanceTransition(true, animated: true)
         self.dismiss(animated: flag) {
             completion?()
-            self.endAppearanceTransition()
+            self.presentationController?.presentingViewController.endAppearanceTransition()
         }
     }
 }
