@@ -84,26 +84,26 @@ class PresentedController: UIViewController {
 extension UIViewController: UIAdaptivePresentationControllerDelegate {
 
     public func presentationController(_ presentationController: UIPresentationController, willPresentWithAdaptiveStyle style: UIModalPresentationStyle, transitionCoordinator: UIViewControllerTransitionCoordinator?) {
-        self.viewWillDisappear(true)
+        self.beginAppearanceTransition(false, animated: true) // this triggers `viewWillDisappear` for presenting VC
+        
     }
     
     public func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
         let coordinator = presentationController.presentingViewController.transitionCoordinator
         coordinator?.notifyWhenInteractionChanges() { context in
             if context.completionVelocity > 0 {
-                self.beginAppearanceTransition(true, animated: true)
+                self.beginAppearanceTransition(true, animated: true) // this triggers `viewWillAppear` for presenting VC
             }
         }
     }
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        self.endAppearanceTransition()
+        self.endAppearanceTransition() // this triggers `viewDidAppear` for presenting VC
     }
     
     public func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
         NSLog("\(String(describing: self)) is presentationControllerDidAttemptToDismiss")
     }
-    
     
 }
 
@@ -118,7 +118,10 @@ extension UIViewController {
             presentationController.delegate = self
         }
         
-        self.present(viewControllerToPresent, animated: flag, completion: completion)
+        self.present(viewControllerToPresent, animated: flag, completion: {
+            self.endAppearanceTransition() // this triggers `viewDidDisappear` for presenting VC
+            completion?()
+        })
     }
     
     func otf_dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
