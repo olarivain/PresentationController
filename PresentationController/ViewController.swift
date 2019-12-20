@@ -68,11 +68,16 @@ extension UIViewController: UIAdaptivePresentationControllerDelegate {
     
     
     public func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-        self.viewWillAppear(true)
+        let coordinator = presentationController.presentingViewController.transitionCoordinator
+        coordinator?.notifyWhenInteractionChanges() { context in
+            if context.completionVelocity > 0 {
+                self.beginAppearanceTransition(true, animated: true)
+            }
+        }
     }
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        self.viewDidAppear(true)
+        self.endAppearanceTransition()
     }
     
     public func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
@@ -84,7 +89,8 @@ extension UIViewController: UIAdaptivePresentationControllerDelegate {
 
 extension UIViewController {
     func otf_present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
-        if (viewControllerToPresent.modalPresentationStyle == .automatic
+        
+        if (viewControllerToPresent.modalPresentationStyle == .automatic // this may be too conservative. `fullSheet` still leaves homeVC exposed
             || viewControllerToPresent.modalPresentationStyle == .pageSheet),
             let presentationController = viewControllerToPresent.presentationController,
             presentationController.delegate == nil {
@@ -96,10 +102,12 @@ extension UIViewController {
     func otf_dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         if self.modalPresentationStyle == .automatic
             || self.modalPresentationStyle == .pageSheet {
-            self.presentationController?.presentingViewController.viewWillAppear(true)
+            self.presentationController?.presentingViewController.beginAppearanceTransition(true, animated: true)
         }
         
-        
-        self.dismiss(animated: flag, completion: completion)
+        self.dismiss(animated: flag) {
+            completion?()
+            self.endAppearanceTransition()
+        }
     }
 }
