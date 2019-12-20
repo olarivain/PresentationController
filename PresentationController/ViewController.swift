@@ -77,7 +77,7 @@ extension UIViewController: UIAdaptivePresentationControllerDelegate {
     }
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        self.endAppearanceTransition()
+        self.endAppearanceTransition() 
     }
     
     public func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
