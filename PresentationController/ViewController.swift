@@ -77,7 +77,7 @@ extension UIViewController: UIAdaptivePresentationControllerDelegate {
     }
     
     public func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-        self.endAppearanceTransition() 
+        self.endAppearanceTransition()
     }
     
     public func presentationControllerDidAttemptToDismiss(_ presentationController: UIPresentationController) {
@@ -99,6 +99,7 @@ extension UIViewController {
         
         self.present(viewControllerToPresent, animated: flag, completion: completion)
     }
+    
     func otf_dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         if self.modalPresentationStyle == .automatic
             || self.modalPresentationStyle == .pageSheet {
